@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SNBP Data Result</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style/result.css" />
+    <style>
+      .qr-container {
+        background-color: white; /* White background */
+        display: inline-block;
+        margin: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo-container">
+        <img src="assets/snbp.png" alt="SNBP Logo" class="logo" />
+      </div>
+      <div class="congrats">
+        SELAMAT! ANDA DINYATAKAN LULUS SELEKSI SNBP 2025
+      </div>
+    </div>
+
+    <div class="qr-container text-center p-4 mb-1">
+      <div id="qrcode"></div>
+    </div>
+
+    <!-- Display NISN & Registration Number -->
+    <div class="ps-4">
+      <p class="fw-bold text-info fs-5">
+        No NISN: <span id="displayNISN">-</span> - No Registrasi:
+        <span id="displayNoreg">-</span>
+      </p>
+    </div>
+
+    <!-- Displaying Name -->
+    <div class="ps-4">
+      <p class="fw-bold text-light fs-2 mb-0" id="displayName">-</p>
+    </div>
+
+    <!-- Displaying Study Program & Level (Level in Brackets) -->
+    <div class="ps-4">
+      <p class="fw-light text-light fs-5 mb-0" id="displayProgramJenjang">-</p>
+    </div>
+
+    <!-- Displaying University -->
+    <div class="ps-4">
+      <p class="fw-light text-light fs-5" id="displayKampus">-</p>
+    </div>
+
+    <div class="container-fluid">
+      <div class="result-container">
+        <div id="resultDetails">
+          <!-- Data will be dynamically inserted here -->
+        </div>
+        <div class="instruction-box">
+          <div class="instruction-title">
+            Silakan lakukan pendaftaran ulang.
+          </div>
+          <div class="instruction-text">
+            Informasi pendaftaran ulang di PTN/Politeknik Negeri dapat dilihat
+            pada link berikut:
+          </div>
+          <a id="link-kampus-display"></a>
+        </div>
+
+        <div class="footer-text">
+          Status penerimaan Anda sebagai mahasiswa akan ditetapkan setelah PTN
+          tujuan melakukan verifikasi data akademik (rapor dan/atau portofolio).
+          Silakan Anda membaca peraturan tentang penerimaan mahasiswa baru di
+          laman PTN tujuan.
+          <br /><br />
+          Khusus peserta KIP Kuliah, PTN tujuan juga dapat melakukan verifikasi
+          data ekonomi dan/atau kunjungan ke tempat tinggal Anda sebelum
+          menetapkan.
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="index.html" class="btn btn-primary">Kembali</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+      // Function to get URL parameters// Function to get URL parameters
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+        var results = regex.exec(location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+      // Mapping for university codes to full names
+      const universityNames = {
+        itb: "INSTITUT TEKNOLOGI BANDUNG",
+        ui: "UNIVERSITAS INDONESIA",
+        ugm: "UNIVERSITAS GADJAH MADA",
+        its: "INSTITUT TEKNOLOGI SEPULUH NOPEMBER",
+        unair: "UNIVERSITAS AIRLANGGA",
+        unpad: "UNIVERSITAS PADJADJARAN",
+        ub: "UNIVERSITAS BRAWIJAYA",
+      };
+
+      // Function to display the results
+      function displayResults() {
+        const resultDiv = document.getElementById("resultDetails");
+        const linkKampusDisplay = document.getElementById(
+          "link-kampus-display"
+        );
+        const linkKampusInput = document.getElementById("link-kampus");
+
+        // Retrieve values
+        const nisn = getUrlParameter("nisn");
+        const noreg = getUrlParameter("noreg");
+        const name = getUrlParameter("name");
+        const programStudi = getUrlParameter("programStudi");
+        let jenjang = getUrlParameter("jenjang");
+        let kampus = getUrlParameter("kampus");
+
+        // Convert kampus short code to full name
+        kampus = universityNames[kampus] || kampus || "-";
+
+        // Fix jenjang if it already contains parentheses
+        jenjang = jenjang.replace(/\(|\)/g, ""); // Remove existing brackets
+
+        // Display NISN & Registration Number
+        document.getElementById("displayNISN").textContent = nisn || "-";
+        document.getElementById("displayNoreg").textContent = noreg || "-";
+
+        // Display Name (Prioritize URL parameter, then existing text, then fallback to dash)
+        document.getElementById("displayName").textContent = name || "-";
+
+        // Display Study Program & Level (Level in brackets)
+        document.getElementById("displayProgramJenjang").textContent =
+          programStudi && jenjang ? `${programStudi} (${jenjang})` : "-";
+
+        // Display University (Converted to full name)
+        document.getElementById("displayKampus").textContent = kampus || "-";
+
+        // Handle link-kampus display
+        // Prioritize the input from the link-kampus input field
+        const campusLink = linkKampusInput ? linkKampusInput.value : "";
+
+        if (campusLink) {
+          linkKampusDisplay.href = campusLink;
+          linkKampusDisplay.textContent = campusLink;
+        } else if (kampus !== "-") {
+          // Fallback to kampus-based link if no input provided
+          linkKampusDisplay.href = `https://penerimaan.${kampus
+            .toLowerCase()
+            .replace(/\s+/g, "")}.ac.id`;
+          linkKampusDisplay.textContent = `Link Penerimaan ${kampus}`;
+        }
+
+        // Existing table rendering (optional)
+        let resultHTML = '<table class="table table-striped">';
+        const fields = [
+          "tahun",
+          "nisn",
+          "noreg",
+          "name",
+          "kampus",
+          "jenjang",
+          "programStudi",
+          "link-kampus",
+          "date",
+          "sekolah",
+          "tempatTinggal",
+          "provinsi",
+        ];
+        const fieldNames = {
+          tahun: "Tahun",
+          nisn: "NISN",
+          noreg: "Nomor Registrasi",
+          name: "Nama",
+          kampus: "Nama Kampus",
+          jenjang: "Jenjang",
+          programStudi: "Program Studi",
+          "link-kampus": "Link Penerimaan Kampus",
+          date: "Tanggal Lahir",
+          sekolah: "Asal Sekolah",
+          tempatTinggal: "Tempat Tinggal",
+          provinsi: "Provinsi",
+        };
+
+        fields.forEach((field) => {
+          const value = getUrlParameter(field);
+          if (value) {
+            resultHTML += `<tr><td><strong>${fieldNames[field]}</strong></td><td>${value}</td></tr>`;
+          }
+        });
+
+        resultHTML += "</table>";
+        resultDiv.innerHTML = resultHTML;
+      }
+
+      // Function to open campus link
+      function openLink() {
+        const linkKampus = document.getElementById("link-kampus");
+        if (linkKampus && linkKampus.value) {
+          window.open(linkKampus.value, "_blank");
+        }
+      }
+
+      // QR Code generation
+      function generateQRCode() {
+        const noreg = getUrlParameter("noreg"); // Get the registration number
+        if (!noreg) return; // If no noreg, do nothing
+
+        const qrData = `https://yourwebsite.com/verify?noreg=${noreg}`; // Adjust link as needed
+
+        new QRCode(document.getElementById("qrcode"), {
+          text: qrData,
+          width: 150,
+          height: 150,
+        });
+      }
+
+      window.onload = function () {
+        displayResults(); // Show user data
+        generateQRCode(); // Generate QR Code
+      };
+    </script>
+  </body>
+</html>

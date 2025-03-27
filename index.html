@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SNBP CLONNING | yK7Cysects</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4079479040912824"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style/styling.css" />
+  </head>
+
+  <body class="bg-custom">
+    <div class="container mt-5">
+      <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4">SNBP CLONNING</h2>
+
+        <div class="mb-3 text-center">
+          <label class="form-label">Mode :</label>
+          <button
+            id="toggleRedBlue"
+            class="btn btn-primary"
+            onclick="changeMode()"
+          >
+            Lulus/ Biru
+          </button>
+        </div>
+
+        <div class="mb-3">
+          <label for="tahun" class="form-label">Tahun</label>
+          <select id="tahun" class="form-select">
+            <option>2027</option>
+            <option>2026</option>
+            <option>2025</option>
+            <option>2024</option>
+            <option>2023</option>
+            <option>2022</option>
+            <option>2021</option>
+            <option>2020</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="nisn" class="form-label">NISN</label>
+          <div class="input-group">
+            <input
+              type="text"
+              id="nisn"
+              class="form-control"
+              placeholder="NISN"
+            />
+            <button class="btn btn-outline-success" onclick="randomizeNISN()">
+              Random NISN
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="noreg" class="form-label">Nomor Registrasi</label>
+          <div class="input-group">
+            <input
+              type="text"
+              id="noreg"
+              class="form-control"
+              placeholder="Nomor Registrasi"
+            />
+            <button class="btn btn-outline-success" onclick="randomizeNoReg()">
+              Random Reg
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="name" class="form-label">Nama</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            placeholder="Masukkan Nama"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="kampus" class="form-label">Nama Kampus</label>
+          <select id="kampus" class="form-select" onchange="updateProdi()">
+            <option value="">Pilih Kampus</option>
+            <option value="itb">INSTITUTE TECHNOLOGY BANDUNG</option>
+            <option value="ui">UNIVERSITAS INDONESIA</option>
+            <option value="ugm">UNIVERSITAS GADJAH MADA</option>
+            <option value="its">INSTITUTE TECHNOLOGY SEPULUH NOPEMBER</option>
+            <option value="unair">UNIVERSITAS AIRLANGGA</option>
+            <option value="unpad">UNIVERSITAS PADJADJARAN</option>
+            <option value="ub">UNIVERSITAS BRAWIJAYA</option>
+            <option value="um">NIVERSITAS NEGERI MALANG</option>
+            <option value="unj">UNIVERSITAS NEGERI JAKARTA</option>
+            <option value="uns">UNIVERSITAS SEBELAS MARET</option>
+            <option value="usk">UNIVERSITAS SYIAH KUALA</option>
+            <option value="unimal">UNIVERSITAS MALIKUSSALEH</option>
+            <option value="utu">UNIVERSITAS TEUKU UMAR</option>
+            <option value="unsam">UNIVERSITAS SAMUDRA</option>
+            <option value="isbiaceh">ISBI ACEH</option>
+            <option value="usu">UNIVERSITAS SUMATERA UTARA</option>
+            <option value="unimed">UNIVERSITAS NEGERI MEDAN</option>
+            <option value="unri">UNIVERSITAS RIAU</option>
+            <option value="umrah">UNIVERSITAS MARITIM RAJA ALI HAJI</option>
+            <option value="unand">UNIVERSITAS ANDALAS</option>
+            <option value="unp">UNIVERSITAS NEGERI PADANG</option>
+            <option value="isi-padangpanjang">ISI PADANG PANJANGg</option>
+            <option value="unja">UNIVERSITAS JAMBIi</option>
+            <option value="unib">UUNIVERSITAS BENGKULU</option>
+            <option value="unsri">UNIVERSITAS SRIWIJAYA</option>
+            <option value="ubb">UNIVERSITAS BANGKA BELITUNG</option>
+            <option value="unila">UNIVERSITAS LAMPUNG</option>
+            <option value="itera">INSTITUT TEKNOLOGI SUMATERA</option>
+            <option value="untirta">UNIVERSITAS SULTAN AGENG TIRTAYASA</option>
+            <option value="upnvj">UPN "VETERAN" JAKARTA</option>
+            <option value="unsika">UNIVERSITAS SINGAPERBANGSA KARAWANG</option>
+            <option value="upi">UNIVERSITAS PENDIDIKAN INDONESIA</option>
+            <option value="isbi">ISBI BANDUNG</option>
+            <option value="ipb">INSTITUT PERTANIAN BOGOR</option>
+            <option value="unsil">UNIVERSITAS SILIWANGI</option>
+            <option value="unsoed">UNIVERSITAS JENDERAL SOEDIRMAN</option>
+            <option value="untidar">UNIVERSITAS TIDAR</option>
+            <option value="isi-surakarta">ISI SURAKARTA</option>
+            <option value="undip">UNIVERSITAS DIPONEGORO</option>
+            <option value="unnes">UNIVERSITAS NEGERI SEMARANG</option>
+            <option value="uny">UNIVERSITAS NEGERI YOGYAKARTA</option>
+            <option value="upnyk">UPN "VETERAN" YOGYAKARTA</option>
+            <option value="isi-yogyakarta">ISI YOGYAKARTA</option>
+            <option value="unej">UNIVERSITAS JEMBER</option>
+            <option value="unesa">UNIVERSITAS NEGERI SURABAYA</option>
+            <option value="trunojoyo">UNIVERSITAS TRUNOJOYO MADURA</option>
+            <option value="upnjatim">UPN "VETERAN" JAWA TIMUR</option>
+            <option value="untan">UNIVERSITAS TANJUNGPURA</option>
+            <option value="upr">UNIVERSITAS PALANGKARAYA</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Program Studi</label>
+          <div class="row">
+            <div class="col-md-4 mb-2">
+              <select
+                id="jenjang"
+                class="form-select"
+                onchange="updateJurusan()"
+              >
+                <option value="">Pilih Jenjang</option>
+                <option value="S1">S1</option>
+                <option value="D4">D4</option>
+                <option value="D3">D3</option>
+                <option value="D2">D2</option>
+                <option value="D1">D1</option>
+              </select>
+            </div>
+            <div class="col-md-8 mb-2">
+              <select id="programStudi" class="form-select">
+                <option value="">Pilih Program Studi</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="link-kampus" class="form-label"
+            >Link Penerimaan Kampus</label
+          >
+          <div class="input-group">
+            <input
+              type="url"
+              id="link-kampus"
+              class="form-control"
+              placeholder="https://penerimaan.mit.ac.id"
+            />
+            <button onclick="openLink()" class="btn btn-outline-success">
+              Link
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="idate" class="form-label">Tanggal Lahir</label>
+          <input type="date" id="date" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+          <label for="sekolah" class="form-label">Asal Sekolah</label>
+          <input
+            type="text"
+            id="sekolah"
+            class="form-control"
+            placeholder="Nama Sekolah"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Tempat Tinggal</label>
+          <div class="row">
+            <div class="col-md-4 mb-2">
+              <select
+                id="jenjang"
+                class="form-select"
+                onchange="updateTempat()"
+              >
+                <option value="">Kabupaten/Kota</option>
+                <option value="kab">Kabupaten</option>
+                <option value="kota">Kota</option>
+              </select>
+            </div>
+            <div class="col-md-8 mb-2">
+              <input
+                type="text"
+                id="tempatTinggal"
+                class="form-control"
+                placeholder="Masukkan nama Kabupaten/Kota"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Provinsi</label>
+          <input
+            type="text"
+            id="provinsi"
+            class="form-control"
+            placeholder="Ketik Nama Provinsi"
+            list="provinsiList"
+          />
+          <datalist id="provinsiList">
+            <option value="Aceh"></option>
+            <option value="Sumatera Utara"></option>
+            <option value="Sumatera Barat"></option>
+            <option value="Riau"></option>
+            <option value="Kepulauan Riau"></option>
+            <option value="Jambi"></option>
+            <option value="Sumatera Selatan"></option>
+            <option value="Bangka Belitung"></option>
+            <option value="Bengkulu"></option>
+            <option value="Lampung"></option>
+            <option value="DKI Jakarta"></option>
+            <option value="Banten"></option>
+            <option value="Jawa Barat"></option>
+            <option value="Jawa Tengah"></option>
+            <option value="DI Yogyakarta"></option>
+            <option value="Jawa Timur"></option>
+            <option value="Kalimantan Barat"></option>
+            <option value="Kalimantan Tengah"></option>
+            <option value="Kalimantan Selatan"></option>
+            <option value="Kalimantan Timur"></option>
+            <option value="Kalimantan Utara"></option>
+            <option value="Sulawesi Utara"></option>
+            <option value="Gorontalo"></option>
+            <option value="Sulawesi Tengah"></option>
+            <option value="Sulawesi Selatan"></option>
+            <option value="Sulawesi Barat"></option>
+            <option value="Sulawesi Tenggara"></option>
+            <option value="Bali"></option>
+            <option value="Nusa Tenggara Barat"></option>
+            <option value="Nusa Tenggara Timur"></option>
+            <option value="Maluku"></option>
+            <option value="Maluku Utara"></option>
+            <option value="Papua"></option>
+            <option value="Papua Barat"></option>
+            <option value="Papua Selatan"></option>
+            <option value="Papua Tengah"></option>
+            <option value="Papua Pegunungan"></option>
+            <option value="Papua Barat Daya"></option>
+          </datalist>
+        </div>
+
+        <div class="d-flex justify-content-center gap-3 mt-3">
+          <button class="btn btn-primary" onclick="displayOutput()">
+            Generate
+          </button>
+          <a href="note_feedback.html?type=note" class="btn btn-warning"
+            >Note</a
+          >
+          <a href="note_feedback.html?type=feedback" class="btn btn-secondary"
+            >Feedback</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 text-md-start">
+            <h5>SNBP CLONNING | yK7Cysects</h5>
+            <p>Website ini dibuat untuk simulasi dan edukasi.</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <p>Ikuti Saya:</p>
+            <a
+              href="https://www.instagram.com/wahy_yuw/profilecard/"
+              target="_blank"
+              class="text-white mx-2"
+            >
+              <i class="fab fa-instagram fa-lg"></i>
+            </a>
+            <a
+              href="https://tiktok.com/@kyuuudd"
+              target="_blank"
+              class="text-white mx-2"
+            >
+              <i class="fab fa-tiktok fa-lg"></i>
+            </a>
+            <a
+              href="mailto:youremail@gmail.com"
+              target="_blank"
+              class="text-white mx-2"
+            >
+              <i class="fas fa-envelope fa-lg"></i>
+            </a>
+            <a
+              href="https://github.com/RizkyWahyudi30"
+              target="_blank"
+              class="text-white mx-2"
+            >
+              <i class="fab fa-github fa-lg"></i>
+            </a>
+          </div>
+        </div>
+        <hr class="border-light" />
+        <p class="mb-0">
+          © 2025 SNBP CLONNING | yK7Cysects. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- fontawesome for footer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+
+    <script>
+      // Mapping of campuses to their available study programs
+      const campusProgramMap = {
+        itb: [
+          "ASTRONOMI",
+          "FISIKA",
+          "ILMU KOMPUTER",
+          "KIMIA",
+          "MATEMATIKA",
+          "MIKROBIOLOGI",
+          "TEKNIK FISIKA",
+          "TEKNIK KIMIA",
+          "TEKNIK INDUSTRI",
+          "TEKNIK INFORMATIKA",
+          "TEKNIK LINGKUNGAN",
+          "TEKNIK MATERIAL",
+          "TEKNIK MESIN",
+          "TEKNIK ELEKTRO",
+          "TEKNIK KOMPUTER",
+          "TEKNIK SIPIL",
+          "ARSITEKTUR",
+          "TEKNIK DIRGANTARA",
+          "SISTEM INFORMASI",
+        ],
+        ui: [
+          "PENDIDIKAN DOKTER",
+          "ILMU KEPERAWATAN",
+          "KESEHATAN MASYARAKAT",
+          "FARMASI",
+          "ILMU KOMPUTER",
+          "SISTEM INFORMASI",
+          "FISIKA",
+          "KIMIA",
+          "MATEMATIKA",
+          "BIOLOGI",
+          "AKUNTANSI",
+          "ILMU EKONOMI",
+          "MANAJEMEN",
+          "ILMU HUKUM",
+          "PSIKOLOGI",
+          "ILMU KOMUNIKASI",
+          "ILMU POLITIK",
+          "HUBUNGAN INTERNASIONAL",
+          "SOSIOLOGI",
+          "SASTRA INDONESIA",
+          "SASTRA INGGRIS",
+          "SASTRA JEPANG",
+          "TEKNIK SIPIL",
+          "TEKNIK ELEKTRO",
+          "TEKNIK METALURGI",
+          "TEKNIK MESIN",
+          "ARSITEKTUR",
+        ],
+        ugm: [
+          "PENDIDIKAN DOKTER",
+          "ILMU KEPERAWATAN",
+          "FARMASI",
+          "ILMU GIZI",
+          "KEDOKTERAN GIGI",
+          "ILMU KOMPUTER",
+          "MATEMATIKA",
+          "FISIKA",
+          "KIMIA",
+          "BIOLOGI",
+          "AKUNTANSI",
+          "MANAJEMEN",
+          "ILMU EKONOMI",
+          "ILMU HUKUM",
+          "TEKNIK SIPIL",
+          "TEKNIK MESIN",
+          "TEKNIK ELEKTRO",
+          "TEKNIK INDUSTRI",
+          "ARSITEKTUR",
+          "ILMU PERTANIAN",
+          "TEKNOLOGI HASIL PERTANIAN",
+          "KEHUTANAN",
+          "PETERNAKAN",
+          "PSIKOLOGI",
+          "ILMU KOMUNIKASI",
+          "HUBUNGAN INTERNASIONAL",
+          "ILMU POLITIK",
+          "ADMINISTRASI PUBLIK",
+          "SOSIOLOGI",
+        ],
+        its: [
+          "FISIKA",
+          "MATEMATIKA",
+          "STATISTIKA",
+          "KIMIA",
+          "BIOLOGI",
+          "TEKNIK SIPIL",
+          "ARSITEKTUR",
+          "TEKNIK LINGKUNGAN",
+          "PERENCANAAN WILAYAH DAN KOTA",
+          "TEKNIK MESIN",
+          "TEKNIK ELEKTRO",
+          "TEKNIK KIMIA",
+          "TEKNIK FISIKA",
+          "TEKNIK INDUSTRI",
+          "TEKNIK MATERIAL DAN METALURGI",
+          "TEKNIK KELAUTAN",
+          "TEKNIK PERKAPALAN",
+          "TEKNIK SISTEM PERKAPALAN",
+          "TEKNIK INFORMATIKA",
+          "SISTEM INFORMASI",
+          "MANAJEMEN BISNIS",
+          "TEKNIK GEOMATIKA",
+          "TEKNIK GEOFISIKA",
+        ],
+        // Add other campuses here
+      };
+
+      // Function to update program studi options based on selected campus
+      function updateProdi() {
+        const kampusSelect = document.getElementById("kampus");
+        const prodiSelect = document.getElementById("programStudi");
+
+        // Clear existing options
+        prodiSelect.innerHTML = '<option value="">Pilih Program Studi</option>';
+
+        // Get the selected campus value
+        const selectedCampus = kampusSelect.value;
+
+        // If a campus is selected
+        if (selectedCampus && campusProgramMap[selectedCampus]) {
+          // Populate the program studi dropdown
+          campusProgramMap[selectedCampus].forEach((prodi) => {
+            const option = document.createElement("option");
+            option.value = prodi;
+            option.textContent = prodi;
+            prodiSelect.appendChild(option);
+          });
+        }
+      }
+
+      // Function to update Jurusan (optional, depending on your requirements)
+      function updateJurusan() {
+        const jenjangSelect = document.getElementById("jenjang");
+        const selectedJenjang = jenjangSelect.value;
+
+        // You can add additional logic here if needed based on the selected education level
+        console.log("Selected Jenjang:", selectedJenjang);
+      }
+
+      function displayOutput() {
+        // Collect all input values
+        const params = new URLSearchParams({
+          tahun: document.getElementById("tahun").value,
+          nisn: document.getElementById("nisn").value,
+          noreg: document.getElementById("noreg").value,
+          name: document.getElementById("name").value,
+          kampus: document.getElementById("kampus").value,
+          jenjang: document.getElementById("jenjang").value,
+          programStudi: document.getElementById("programStudi").value,
+          "link-kampus": document.getElementById("link-kampus").value,
+          date: document.getElementById("date").value,
+          sekolah: document.getElementById("sekolah").value,
+          tempatTinggal: document.getElementById("tempatTinggal").value,
+          provinsi: document.getElementById("provinsi").value,
+        });
+
+        // Redirect to the results page with parameters
+        window.location.href = "result.html?" + params.toString();
+      }
+    </script>
+  </body>
+</html>

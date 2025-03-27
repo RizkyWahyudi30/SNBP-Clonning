@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SNBP Data Result</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-color: #0d47a1; /* Deep blue background */
+        color: white;
+        font-family: Arial, sans-serif;
+      }
+      .container-fluid {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .header {
+        background-color: white;
+        color: black;
+        text-align: center;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+      }
+      .result-container {
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+        padding: 30px;
+      }
+      .instruction-box {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 20px;
+      }
+      .instruction-title {
+        color: white;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .instruction-text {
+        color: #e0e0e0;
+        margin-bottom: 10px;
+      }
+      #link-kampus-display {
+        color: #2196f3;
+        word-break: break-all;
+      }
+      .footer-text {
+        color: #e0e0e0;
+        font-size: 0.9em;
+        margin-top: 20px;
+      }
+      .table {
+        color: white;
+      }
+      .table th,
+      .table td {
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="header">
+        <img
+          src="assets/snbp.png"
+          alt="SNBP Logo"
+          class="img-fluid"
+          style="max-height: 50px"
+        />
+      </div>
+      <div class="result-container">
+        <h2 class="text-center mb-4">
+          SELAMAT! ANDA DINYATAKAN LULUS SELEKSI SNBP 2025
+        </h2>
+        <div id="resultDetails">
+          <!-- Data will be dynamically inserted here -->
+        </div>
+        <div class="instruction-box">
+          <div class="instruction-title">
+            Silakan lakukan pendaftaran ulang.
+          </div>
+          <div class="instruction-text">
+            Informasi pendaftaran ulang di PTN/Politeknik Negeri dapat dilihat
+            pada link berikut:
+          </div>
+          <a id="link-kampus-display"></a>
+        </div>
+
+        <div class="footer-text">
+          Status penerimaan Anda sebagai mahasiswa akan ditetapkan setelah PTN
+          tujuan melakukan verifikasi data akademik (rapor dan/atau portofolio).
+          Silakan Anda membaca peraturan tentang penerimaan mahasiswa baru di
+          laman PTN tujuan.
+          <br /><br />
+          Khusus peserta KIP Kuliah, PTN tujuan juga dapat melakukan verifikasi
+          data ekonomi dan/atau kunjungan ke tempat tinggal Anda sebelum
+          menetapkan.
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="index.html" class="btn btn-primary">Kembali</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Function to get URL parameters
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+        var results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1]);
+      }
+
+      // Function to display the results
+      function displayResults() {
+        const resultDiv = document.getElementById("resultDetails");
+        const linkKampusDisplay = document.getElementById(
+          "link-kampus-display"
+        );
+
+        // List of all fields to retrieve
+        const fields = [
+          "tahun",
+          "nisn",
+          "noreg",
+          "name",
+          "kampus",
+          "jenjang",
+          "programStudi",
+          "link-kampus",
+          "date",
+          "sekolah",
+          "tempatTinggal",
+          "provinsi",
+        ];
+
+        // Create HTML to display results
+        let resultHTML = '<table class="table table-striped">';
+        fields.forEach((field) => {
+          const value = getUrlParameter(field);
+          if (value) {
+            // Convert field names to more readable format
+            const fieldNames = {
+              tahun: "Tahun",
+              nisn: "NISN",
+              noreg: "Nomor Registrasi",
+              name: "Nama",
+              kampus: "Nama Kampus",
+              jenjang: "Jenjang",
+              programStudi: "Program Studi",
+              "link-kampus": "Link Penerimaan Kampus",
+              date: "Tanggal Lahir",
+              sekolah: "Asal Sekolah",
+              tempatTinggal: "Tempat Tinggal",
+              provinsi: "Provinsi",
+            };
+
+            // Add the link to the specific link-kampus-display element
+            if (field === "link-kampus") {
+              linkKampusDisplay.href = value;
+              linkKampusDisplay.textContent = value;
+            }
+
+            resultHTML += `
+                        <tr>
+                            <td><strong>${fieldNames[field]}</strong></td>
+                            <td>${value}</td>
+                        </tr>
+                    `;
+          }
+        });
+        resultHTML += "</table>";
+        resultDiv.innerHTML = resultHTML;
+      }
+
+      // Call the display function when page loads
+      window.onload = displayResults;
+    </script>
+  </body>
+</html>

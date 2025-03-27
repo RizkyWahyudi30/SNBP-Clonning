@@ -1,0 +1,4 @@
+.bg-custom {
+  background: url("/assets/backgroundMain.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
