@@ -203,11 +203,7 @@
           <label class="form-label">Tempat Tinggal</label>
           <div class="row">
             <div class="col-md-4 mb-2">
-              <select
-                id="jenjang"
-                class="form-select"
-                onchange="updateTempat()"
-              >
+              <select id="jenjang" class="form-select">
                 <option value="">Kabupaten/Kota</option>
                 <option value="kab">Kabupaten</option>
                 <option value="kota">Kota</option>
@@ -451,6 +447,15 @@
         // Add other campuses here
       };
 
+      // Function to update Tempat Tinggal format
+      function updateTempat() {
+        // This function exists in index.html to prevent the reference error
+        // It doesn't need to update any display since we're just collecting values in this page
+        console.log(
+          "Jenjang changed to: " + document.getElementById("jenjang").value
+        );
+      }
+
       // Function to update program studi options based on selected campus
       function updateProdi() {
         const kampusSelect = document.getElementById("kampus");
@@ -483,6 +488,7 @@
         console.log("Selected Jenjang:", selectedJenjang);
       }
 
+      // Function to collect form data and redirect to results page
       function displayOutput() {
         // Collect all input values
         const params = new URLSearchParams({
@@ -503,6 +509,28 @@
         // Redirect to the results page with parameters
         window.location.href = "result.html?" + params.toString();
       }
+
+      // Add event listeners when the document is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add event listener for kampus select
+        const kampusSelect = document.getElementById("kampus");
+        if (kampusSelect) {
+          kampusSelect.addEventListener("change", updateProdi);
+        }
+
+        // Add event listener for jenjang select
+        const jenjangSelect = document.getElementById("jenjang");
+        if (jenjangSelect) {
+          jenjangSelect.addEventListener("change", updateJurusan);
+          jenjangSelect.addEventListener("change", updateTempat);
+        }
+
+        // Add event listener for tempatTinggal input if needed
+        const tempatTinggalInput = document.getElementById("tempatTinggal");
+        if (tempatTinggalInput) {
+          tempatTinggalInput.addEventListener("input", updateTempat);
+        }
+      });
     </script>
   </body>
 </html>

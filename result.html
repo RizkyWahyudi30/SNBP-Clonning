@@ -15,6 +15,10 @@
         display: inline-block;
         margin: 30px;
       }
+      /* New style to hide the table */
+      #resultDetails {
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -27,31 +31,50 @@
       </div>
     </div>
 
-    <div class="qr-container text-center p-4 mb-1">
+    <div class="qr-container text-center p-3 mb-1">
       <div id="qrcode"></div>
     </div>
 
     <!-- Display NISN & Registration Number -->
-    <div class="ps-4">
-      <p class="fw-bold text-info fs-5">
-        No NISN: <span id="displayNISN">-</span> - No Registrasi:
+    <div class="content-padding">
+      <p class="fw-bold text-info fs-5 mb-0">
+        NISN <span id="displayNISN">-</span> - NOREG
         <span id="displayNoreg">-</span>
       </p>
     </div>
 
     <!-- Displaying Name -->
-    <div class="ps-4">
-      <p class="fw-bold text-light fs-2 mb-0" id="displayName">-</p>
+    <div class="content-padding">
+      <p class="fw-bold text-light fs-1 mb-0" id="displayName">-</p>
     </div>
 
     <!-- Displaying Study Program & Level (Level in Brackets) -->
-    <div class="ps-4">
-      <p class="fw-light text-light fs-5 mb-0" id="displayProgramJenjang">-</p>
+    <div class="content-padding">
+      <p class="fw-lighter text-light fs-5 mb-0" id="displayProgramJenjang">
+        -
+      </p>
     </div>
 
     <!-- Displaying University -->
-    <div class="ps-4">
-      <p class="fw-light text-light fs-5" id="displayKampus">-</p>
+    <div class="content-padding">
+      <p class="fw-lighter text-light fs-5" id="displayKampus">-</p>
+    </div>
+
+    <div class="content-padding">
+      <p class="fw-bold text-info fs-5 mb-0">Tanggal Lahir:</p>
+      <p class="fw-bold text-light fs-5" id="displayDate">-</p>
+    </div>
+    <div class="content-padding">
+      <p class="fw-bold text-info fs-5 mb-0">Asal Sekolah:</p>
+      <p class="fw-bold text-light fs-5" id="displaySekolah">-</p>
+    </div>
+    <div class="content-padding">
+      <p class="fw-bold text-info fs-5 mb-0">Kabupaten/Kota:</p>
+      <p class="fw-bold text-light fs-5" id="displayTempatTinggal">-</p>
+    </div>
+    <div class="content-padding">
+      <p class="fw-bold text-info fs-5 mb-0">Provinsi:</p>
+      <p class="fw-bold text-light fs-5" id="displayProvinsi">-</p>
     </div>
 
     <div class="container-fluid">
@@ -81,7 +104,7 @@
           menetapkan.
         </div>
 
-        <div class="text-center mt-4">
+        <div class="text-center mt-5">
           <a href="index.html" class="btn btn-primary">Kembali</a>
         </div>
       </div>
@@ -90,7 +113,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <script>
-      // Function to get URL parameters// Function to get URL parameters
+      // Function to get URL parameters
       function getUrlParameter(name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
@@ -119,13 +142,17 @@
         );
         const linkKampusInput = document.getElementById("link-kampus");
 
-        // Retrieve values
+        // Retrieve values from URL parameters
         const nisn = getUrlParameter("nisn");
         const noreg = getUrlParameter("noreg");
         const name = getUrlParameter("name");
         const programStudi = getUrlParameter("programStudi");
         let jenjang = getUrlParameter("jenjang");
         let kampus = getUrlParameter("kampus");
+        const date = getUrlParameter("date");
+        const sekolah = getUrlParameter("sekolah");
+        const tempatTinggal = getUrlParameter("tempatTinggal");
+        const provinsi = getUrlParameter("provinsi");
 
         // Convert kampus short code to full name
         kampus = universityNames[kampus] || kampus || "-";
@@ -134,100 +161,131 @@
         jenjang = jenjang.replace(/\(|\)/g, ""); // Remove existing brackets
 
         // Display NISN & Registration Number
-        document.getElementById("displayNISN").textContent = nisn || "-";
-        document.getElementById("displayNoreg").textContent = noreg || "-";
+        const displayNISN = document.getElementById("displayNISN");
+        if (displayNISN) displayNISN.textContent = nisn || "-";
+
+        const displayNoreg = document.getElementById("displayNoreg");
+        if (displayNoreg) displayNoreg.textContent = noreg || "-";
 
         // Display Name (Prioritize URL parameter, then existing text, then fallback to dash)
-        document.getElementById("displayName").textContent = name || "-";
+        const displayName = document.getElementById("displayName");
+        if (displayName) displayName.textContent = name || "-";
 
         // Display Study Program & Level (Level in brackets)
-        document.getElementById("displayProgramJenjang").textContent =
-          programStudi && jenjang ? `${programStudi} (${jenjang})` : "-";
-
-        // Display University (Converted to full name)
-        document.getElementById("displayKampus").textContent = kampus || "-";
-
-        // Handle link-kampus display
-        // Prioritize the input from the link-kampus input field
-        const campusLink = linkKampusInput ? linkKampusInput.value : "";
-
-        if (campusLink) {
-          linkKampusDisplay.href = campusLink;
-          linkKampusDisplay.textContent = campusLink;
-        } else if (kampus !== "-") {
-          // Fallback to kampus-based link if no input provided
-          linkKampusDisplay.href = `https://penerimaan.${kampus
-            .toLowerCase()
-            .replace(/\s+/g, "")}.ac.id`;
-          linkKampusDisplay.textContent = `Link Penerimaan ${kampus}`;
+        const displayProgramJenjang = document.getElementById(
+          "displayProgramJenjang"
+        );
+        if (displayProgramJenjang) {
+          displayProgramJenjang.textContent =
+            programStudi && jenjang ? `${programStudi} (${jenjang})` : "-";
         }
 
-        // Existing table rendering (optional)
-        let resultHTML = '<table class="table table-striped">';
-        const fields = [
-          "tahun",
-          "nisn",
-          "noreg",
-          "name",
-          "kampus",
-          "jenjang",
-          "programStudi",
-          "link-kampus",
-          "date",
-          "sekolah",
-          "tempatTinggal",
-          "provinsi",
-        ];
-        const fieldNames = {
-          tahun: "Tahun",
-          nisn: "NISN",
-          noreg: "Nomor Registrasi",
-          name: "Nama",
-          kampus: "Nama Kampus",
-          jenjang: "Jenjang",
-          programStudi: "Program Studi",
-          "link-kampus": "Link Penerimaan Kampus",
-          date: "Tanggal Lahir",
-          sekolah: "Asal Sekolah",
-          tempatTinggal: "Tempat Tinggal",
-          provinsi: "Provinsi",
-        };
+        // Display University (Converted to full name)
+        const displayKampus = document.getElementById("displayKampus");
+        if (displayKampus) displayKampus.textContent = kampus || "-";
 
-        fields.forEach((field) => {
-          const value = getUrlParameter(field);
-          if (value) {
-            resultHTML += `<tr><td><strong>${fieldNames[field]}</strong></td><td>${value}</td></tr>`;
+        // Display Date in DD/MM/YYYY format
+        const displayDate = document.getElementById("displayDate");
+        if (displayDate) {
+          if (date) {
+            let formattedDate = date.split("-").reverse().join("/"); // Format DD/MM/YYYY
+            displayDate.textContent = formattedDate;
+          } else {
+            displayDate.textContent = "-";
           }
-        });
+        }
 
-        resultHTML += "</table>";
-        resultDiv.innerHTML = resultHTML;
+        // Display School
+        const displaySekolah = document.getElementById("displaySekolah");
+        if (displaySekolah) displaySekolah.textContent = sekolah || "-";
+
+        // Display Tempat Tinggal
+        const displayTempatTinggal = document.getElementById(
+          "displayTempatTinggal"
+        );
+        if (displayTempatTinggal) {
+          let formattedTempat = tempatTinggal || "-";
+          displayTempatTinggal.textContent = formattedTempat;
+        }
+
+        // Display Provinsi
+        const displayProvinsi = document.getElementById("displayProvinsi");
+        if (displayProvinsi) displayProvinsi.textContent = provinsi || "-";
+
+        // Handle link-kampus display
+        if (linkKampusDisplay) {
+          // Prioritize the input from the link-kampus input field
+          const campusLink = getUrlParameter("link-kampus");
+
+          if (campusLink) {
+            linkKampusDisplay.href = campusLink;
+            linkKampusDisplay.textContent = campusLink;
+          } else if (kampus !== "-") {
+            // Fallback to kampus-based link if no input provided
+            const kampusCode = getUrlParameter("kampus").toLowerCase();
+            linkKampusDisplay.href = `https://penerimaan.${kampusCode}.ac.id`;
+            linkKampusDisplay.textContent = `Link Penerimaan ${kampus}`;
+          }
+        }
+
+        // Remove table generation code if needed
+        if (resultDiv) resultDiv.innerHTML = "";
+      }
+
+      // Function to update tempat display based on URL parameters
+      function initializeTempat() {
+        const displayTempat = document.getElementById("displayTempatTinggal");
+        if (!displayTempat) return;
+
+        const jenisTempat = getUrlParameter("jenjang");
+        const namaTempat = getUrlParameter("tempatTinggal");
+
+        // Use the value already in displayTempat if it's set from URL parameters
+        // This prevents overriding the formatted value that might already include prefix
       }
 
       // Function to open campus link
       function openLink() {
-        const linkKampus = document.getElementById("link-kampus");
-        if (linkKampus && linkKampus.value) {
-          window.open(linkKampus.value, "_blank");
+        const linkValue = getUrlParameter("link-kampus");
+        if (linkValue) {
+          window.open(linkValue, "_blank");
+        } else {
+          const kampusCode = getUrlParameter("kampus").toLowerCase();
+          if (kampusCode) {
+            window.open(`https://penerimaan.${kampusCode}.ac.id`, "_blank");
+          }
         }
       }
 
       // QR Code generation
       function generateQRCode() {
+        if (typeof QRCode === "undefined") {
+          console.warn("QRCode library not loaded");
+          return;
+        }
+
+        const qrElement = document.getElementById("qrcode");
+        if (!qrElement) return;
+
         const noreg = getUrlParameter("noreg"); // Get the registration number
         if (!noreg) return; // If no noreg, do nothing
 
         const qrData = `https://yourwebsite.com/verify?noreg=${noreg}`; // Adjust link as needed
 
-        new QRCode(document.getElementById("qrcode"), {
+        // Clear previous QR code if any
+        qrElement.innerHTML = "";
+
+        new QRCode(qrElement, {
           text: qrData,
           width: 150,
           height: 150,
         });
       }
 
+      // Initialize everything when the page loads
       window.onload = function () {
         displayResults(); // Show user data
+        initializeTempat(); // Initialize tempat display
         generateQRCode(); // Generate QR Code
       };
     </script>
