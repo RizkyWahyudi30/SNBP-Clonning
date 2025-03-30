@@ -2,14 +2,21 @@
 
 Halo guys, website SNBP Clonning ini aku terinspirasi dari githubnya bang `@anuGrahBodi`, jadi disini aku ingin membuat ulang atau mengcopy website nya dengan merapikan main page nya agar lebih rapih dan lebih indah
 
-Kalau begitu, yuk ikutin bagaimana cara membuatnya :
+Tech Stack yang aku pakai disini ada 3, yaitu : </br>
 
-# Cara Menjalankan
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=plastic&logo=css3&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=plastic&logo=html5&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E) ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=plastic&logo=bootstrap&logoColor=white)
 
-- pertama, kalian harus menginstall dulu `Node.js, MySql, XAMPP` di komputer atau laptop kalian
-  - 🎯 Node.js = (https://nodejs.org/en/download)
-  - 🎯 MySql = (https://www.mysql.com/downloads/)
-  - 🎯 XAMPP = (https://www.apachefriends.org/download.html)
+dan juga menggunakan cdnjs fontawesome dan qrcode :
+- `font:  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>`
+- `qrcode:  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>`
+
+# Fitur fitur 
+
+pertama, kalian harus menginstall dulu `Node.js, MySql, XAMPP` di komputer atau laptop kalian
+- 🎯 Node.js = (https://nodejs.org/en/download)
+- 🎯 MySql = (https://www.mysql.com/downloads/)
+- 🎯 XAMPP = (https://www.apachefriends.org/download.html)
+  
 - Kedua, setelah kalian menginstall ketiga itu, kalian buat folder untuk tempat file ngoding kalian. Setelah membuat itu, kalian buka folder itu di text editor kalian, kalo aku di `vscode`. Setelah di vscode nya, kalian buka `terminal` vscodenya, lalu ketikkan
 
 ```bash
