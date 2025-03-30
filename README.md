@@ -1,14 +1,14 @@
 # SNBP Clonning
 
-Halo guys, website SNBP Clonning ini aku terinspirasi dari githubnya bang `@anuGrahBodi`, jadi disini aku ingin membuat ulang atau mengcopy website nya dengan merapikan main page nya agar lebih rapih dan lebih indah
+Hi guys, I was inspired by the GitHub of `@anuGrahBodi` for this SNBP Clonning website, so here I want to recreate or copy the website by tidying up the main page to make it neater and more beautiful.
 
-Tech Stack yang aku pakai disini ada 3, yaitu : </br>
+The Tech Stack that I use here is 3, namely: </br>
 
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=plastic&logo=css3&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=plastic&logo=html5&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E) ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=plastic&logo=bootstrap&logoColor=white)
 
-dan juga menggunakan cdnjs fontawesome dan qrcode :
-- `font:  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>`
-- `qrcode:  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>`
+and also using `cdnjs fontawesome and qrcode`:
+- `🔐 font:  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>`
+- `🔐 qrcode:  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>`
 
 # Fitur fitur 
 
