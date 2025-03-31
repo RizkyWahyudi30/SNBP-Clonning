@@ -2,6 +2,10 @@
 
 Hi guys, I was inspired by the GitHub of `@anuGrahBodi` for this SNBP Clonning website, so here I want to recreate or copy the website by tidying up the main page to make it neater and more beautiful.
 
+> [!WARNING]
+> once again, I can't just copy other people's projects, I also make changes
+> 
+
 The Tech Stack that I use here is 3, namely: </br>
 
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=plastic&logo=css3&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=plastic&logo=html5&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E) ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=plastic&logo=bootstrap&logoColor=white)
@@ -25,4 +29,8 @@ The following are the features displayed on the `SNBP Clonning website`:
 - 🎯 Fill in school/fake name
 - 🎯 Select place of residence, district/city and district/city name
 - 🎯 Enter province name
+
+> [!NOTE]
+> 
+> This website will continue to grow
 
