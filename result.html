@@ -45,7 +45,9 @@
 
     <!-- Displaying Name -->
     <div class="content-padding">
-      <p class="fw-bold text-light fs-1 mb-0" id="displayName">-</p>
+      <p class="fw-bold text-light display-1 mb-0 big-text" id="displayName">
+        -
+      </p>
     </div>
 
     <!-- Displaying Study Program & Level (Level in Brackets) -->
@@ -62,19 +64,19 @@
 
     <div class="content-padding">
       <p class="fw-bold text-info fs-5 mb-0 mt-lg-1">Tanggal Lahir</p>
-      <p class="fw-bold text-light fs-5" id="displayDate">-</p>
+      <p class="fw-bold text-light fs-3" id="displayDate">-</p>
     </div>
     <div class="content-padding">
       <p class="fw-bold text-info fs-5 mb-0">Asal Sekolah</p>
-      <p class="fw-bold text-light fs-5" id="displaySekolah">-</p>
+      <p class="fw-bold text-light fs-3" id="displaySekolah">-</p>
     </div>
     <div class="content-padding">
       <p class="fw-bold text-info fs-5 mb-0">Kabupaten/Kota</p>
-      <p class="fw-bold text-light fs-5" id="displayTempatTinggal">-</p>
+      <p class="fw-bold text-light fs-3" id="displayTempatTinggal">-</p>
     </div>
     <div class="content-padding">
       <p class="fw-bold text-info fs-5 mb-0">Provinsi</p>
-      <p class="fw-bold text-light fs-5" id="displayProvinsi">-</p>
+      <p class="fw-bold text-light fs-3" id="displayProvinsi">-</p>
     </div>
 
     <div class="container-fluid">
@@ -151,6 +153,7 @@
         let kampus = getUrlParameter("kampus");
         const date = getUrlParameter("date");
         const sekolah = getUrlParameter("sekolah");
+        const jenisTempat = getUrlParameter("jenisTempat");
         const tempatTinggal = getUrlParameter("tempatTinggal");
         const provinsi = getUrlParameter("provinsi");
 
@@ -199,18 +202,23 @@
         const displaySekolah = document.getElementById("displaySekolah");
         if (displaySekolah) displaySekolah.textContent = sekolah || "-";
 
-        // Display Tempat Tinggal
         const displayTempatTinggal = document.getElementById(
           "displayTempatTinggal"
         );
         if (displayTempatTinggal) {
-          let formattedTempat = tempatTinggal || "-";
+          let formattedTempat = "-";
+          if (jenisTempat && tempatTinggal) {
+            const prefix =
+              jenisTempat.toLowerCase() === "kabupaten" ? "Kab." : "Kota.";
+            formattedTempat = `${prefix} ${tempatTinggal}`;
+          }
           displayTempatTinggal.textContent = formattedTempat;
         }
 
         // Display Provinsi
         const displayProvinsi = document.getElementById("displayProvinsi");
-        if (displayProvinsi) displayProvinsi.textContent = provinsi || "-";
+        if (displayProvinsi)
+          displayProvinsi.textContent = `Prov. ${provinsi}` || "-";
 
         // Handle link-kampus display
         if (linkKampusDisplay) {
@@ -233,15 +241,27 @@
       }
 
       // Function to update tempat display based on URL parameters
+      // Function to update tempat display based on URL parameters
       function initializeTempat() {
         const displayTempat = document.getElementById("displayTempatTinggal");
         if (!displayTempat) return;
 
-        const jenisTempat = getUrlParameter("jenjang");
+        // Ambil nilai jenisTempat dan tempatTinggal dari URL
+        const jenisTempat = getUrlParameter("jenisTempat");
         const namaTempat = getUrlParameter("tempatTinggal");
 
-        // Use the value already in displayTempat if it's set from URL parameters
-        // This prevents overriding the formatted value that might already include prefix
+        // Format tampilan sesuai dengan pilihan
+        if (jenisTempat && namaTempat) {
+          if (jenisTempat === "kota") {
+            displayTempat.textContent = "Kota. " + namaTempat;
+          } else if (jenisTempat === "kab") {
+            displayTempat.textContent = "Kab. " + namaTempat;
+          } else {
+            displayTempat.textContent = namaTempat;
+          }
+        } else {
+          displayTempat.textContent = namaTempat || "-";
+        }
       }
 
       // Function to open campus link

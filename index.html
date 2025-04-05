@@ -147,7 +147,7 @@
           <div class="row">
             <div class="col-md-4 mb-2">
               <select
-                id="jenjang"
+                id="jenjangPendidikan"
                 class="form-select"
                 onchange="updateJurusan()"
               >
@@ -203,7 +203,7 @@
           <label class="form-label">Tempat Tinggal</label>
           <div class="row">
             <div class="col-md-4 mb-2">
-              <select id="jenjang" class="form-select">
+              <select id="jenisTempat" class="form-select">
                 <option value="">Kabupaten/Kota</option>
                 <option value="kab">Kabupaten</option>
                 <option value="kota">Kota</option>
@@ -339,25 +339,18 @@
       // Mapping of campuses to their available study programs
       const campusProgramMap = {
         itb: [
-          "ASTRONOMI",
-          "FISIKA",
-          "ILMU KOMPUTER",
-          "KIMIA",
-          "MATEMATIKA",
-          "MIKROBIOLOGI",
-          "TEKNIK FISIKA",
-          "TEKNIK KIMIA",
-          "TEKNIK INDUSTRI",
-          "TEKNIK INFORMATIKA",
-          "TEKNIK LINGKUNGAN",
-          "TEKNIK MATERIAL",
-          "TEKNIK MESIN",
-          "TEKNIK ELEKTRO",
-          "TEKNIK KOMPUTER",
-          "TEKNIK SIPIL",
-          "ARSITEKTUR",
-          "TEKNIK DIRGANTARA",
-          "SISTEM INFORMASI",
+          "Fakultas Ilmu dan Teknologi Kebumian (FITB)",
+          "Fakultas Matematika dan Ilmu Pengetahuan Alam (FMIPA)",
+          "Fakultas Seni Rupa dan Desain (FSRD)",
+          "Fakultas Teknologi Industri (FTI)",
+          "Fakultas Teknik Mesin dan Dirgantara (FTMD)",
+          "Fakultas Teknik Pertambangan dan Perminyakan (FTTM)",
+          "Fakultas Teknik Sipil dan Lingkungan (FTSL)",
+          "Sekolah Arsitektur, Perencanaan dan Pengembangan Kebijakan (SAPPK)",
+          "Sekolah Bisnis dan Manajemen (SBM)",
+          "Sekolah Farmasi (SF)",
+          "Sekolah Ilmu dan Teknologi Hayati (SITH)",
+          "Sekolah Teknik Elektro dan Informatika (STEI)",
         ],
         ui: [
           "PENDIDIKAN DOKTER",
@@ -444,7 +437,18 @@
           "TEKNIK GEOMATIKA",
           "TEKNIK GEOFISIKA",
         ],
-        // Add other campuses here
+        unair: [],
+        unpad: [],
+        ub: [],
+        undip: [],
+        uny: [],
+        unnes: [],
+        uns: [],
+        unj: [],
+        upi: [],
+        upnyk: [],
+        unesa: [],
+        ipb: [],
       };
 
       // Function to update Tempat Tinggal format
@@ -481,7 +485,7 @@
 
       // Function to update Jurusan (optional, depending on your requirements)
       function updateJurusan() {
-        const jenjangSelect = document.getElementById("jenjang");
+        const jenjangSelect = document.getElementById("jenjangPendidikan");
         const selectedJenjang = jenjangSelect.value;
 
         // You can add additional logic here if needed based on the selected education level
@@ -497,11 +501,12 @@
           noreg: document.getElementById("noreg").value,
           name: document.getElementById("name").value,
           kampus: document.getElementById("kampus").value,
-          jenjang: document.getElementById("jenjang").value,
+          jenjang: document.getElementById("jenjangPendidikan").value,
           programStudi: document.getElementById("programStudi").value,
           "link-kampus": document.getElementById("link-kampus").value,
           date: document.getElementById("date").value,
           sekolah: document.getElementById("sekolah").value,
+          jenisTempat: document.getElementById("jenisTempat").value,
           tempatTinggal: document.getElementById("tempatTinggal").value,
           provinsi: document.getElementById("provinsi").value,
         });
