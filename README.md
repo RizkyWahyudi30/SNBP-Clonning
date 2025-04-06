@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/Header-README.jpeg" alt="Logo" width="200">
+  <img src="assets/Header-README.jpeg" alt="Logo" width="100%">
 </p>
 
 # SNBP Clonning
