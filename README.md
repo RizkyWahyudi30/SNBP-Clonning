@@ -35,6 +35,11 @@ The following are the features displayed on the `SNBP Clonning website`:
 - 🎯 Select place of residence, district/city and district/city name
 - 🎯 Enter province name
 
+## Hosting Wsbite 
+I host my website with `vercel`  </br>
+
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+
 > [!NOTE]
 >
 > This website will continue to grow
